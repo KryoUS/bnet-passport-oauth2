@@ -84,6 +84,9 @@ app.get('/', function(req, res) {
         //This setup uses Express Sessions, so to make calls using the user's token, we change access_token on the URL to be req.session.passport.user.token
         //req.session will include specific information from the user's browser and session
         //req.session.passport will include information from the user's broswer for this session's passport
+        
+        console.log(req.session.passport.user);
+        
         var output = '<h1>Express OAuth Test</h1>' + req.user.id + '<br>';
 
         if(req.user.battletag) {
@@ -91,8 +94,9 @@ app.get('/', function(req, res) {
         }
 
         output += '<a href="/logout">Logout</a>';
-        console.log(req.session.passport.user)
+
         res.send(output);
+
     //Else we aske the user to log in
     } else {
         res.send('<h1>Express OAuth Test</h1>' + '<a href="/login">Login with Bnet</a>');
